@@ -1,0 +1,6 @@
+mdm:
+   etisalat:
+      server:
+         port: 8011
+      mongo:
+         uri: mongodb://platformadmin:3t1s4l4t-2022!@10.170.1.66:27017,10.170.1.67:27017,10.170.1.68:27017/oum_addc?authSource=admin

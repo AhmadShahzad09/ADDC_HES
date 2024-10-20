@@ -1,0 +1,66 @@
+spring.profiles.active: @build.profile.id@
+mdm:
+    etisalat:
+        api:
+            auth:
+              user: admin
+              pass: admin
+            param.find.meter: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/findEquipmentStatusAndUpdateLastResponse/
+            param.gateway.params: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/getGatewayParams/            
+            changeip.gateway: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/assignCommunicationEquipmentAddressProperty
+            find.event.data: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/findEventDataTypeCodeByObisCode
+            changestatus.gateway: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/updateEquipmentStatus
+            find.equipment.by.serialnumber: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/equipmentBySerialNumber/
+            update.equipment.unreachable: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/updateEquipmentUnreacheableByLastHours
+        platform:
+           useBusProducers: false
+
+spring:
+    cloud.stream:
+        bindings:
+            heartbeat-in:
+                #consumer: 
+                #  concurrency: 32
+                #  partitioned: true
+                contentType: application/json;charset=UTF-8
+                destination: ${mdm.etisalat.company.code}_heartbeat-topic
+                group: heartbeat-group
+        kafka:
+            binder:
+                jaas:
+                    loginModule: org.apache.kafka.common.security.plain.PlainLoginModule
+                    options:
+                        username: ${mdm.etisalat.kafka.username}
+                        password: ${mdm.etisalat.kafka.password}
+                brokers: ${mdm.etisalat.kafka.brokers}
+                configuration:
+                    sasl:
+                        mechanism: PLAIN
+                    #        configuration.sasl.jaas.config: "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"admin\" password=\"admin-secret\";"
+                    auto.offset.reset: earliest
+
+                    security.protocol: SASL_PLAINTEXT
+                    #            enabled.mechanism: PLAIN
+                    key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                    value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                #autoAddPartitions: true
+                #consumerProperties:
+                #  session.timeout.ms: 120000
+                #  max.poll.interval.ms: 300000
+                #  max.poll.records: 1
+    data.mongodb:
+        uri: ${mdm.etisalat.mongo.uri}
+        authentication-database: ${mdm.etisalat.mongo.authDatabase}
+
+logging:
+    pattern:
+        console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %([%thread]) %(%-5level) %logger.%M - %msg%n"
+    level:
+        root: INFO
+        org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+        com.minsait.etisalat.mqtt.handler.MqttMessageHandler: DEBUG
+
+job:
+    scheduled:
+        unreachable: ${job.unreachable}
+        active: ${job.active}

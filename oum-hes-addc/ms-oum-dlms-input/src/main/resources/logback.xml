@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="HOME_LOG" value="logs/app.log" />
+
+	<appender name="input-push"	class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-push.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-push.%d{yyyy-MM-dd}.%i.log	</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.minsait.oum.mdc.tcp.server" level="debug" additivity="false">
+		<appender-ref ref="input-push" />
+	</logger>
+	<logger name="com.indracompany.energy.dlms.cosem.addc.server" level="debug" additivity="false">
+		<appender-ref ref="input-push" />
+	</logger>
+	<logger name="com.minsait.oum.mdc.dlms.server" level="debug" additivity="false">
+		<appender-ref ref="input-push" />
+	</logger>
+
+	<!-- ===========CHECKED====== -->
+
+	<appender name="input-energyprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-energyprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-energyprofile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.minsait.oum.mdc.dlms.input.energyprofile"
+		level="debug" additivity="false">
+		<appender-ref ref="input-energyprofile" />
+	</logger>
+
+	<appender name="input-loadprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-loadprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-loadprofile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.minsait.oum.mdc.dlms.input.loadprofile"
+		level="debug" additivity="false">
+		<appender-ref ref="input-loadprofile" />
+	</logger>
+	
+	<appender name="input-alarm-profile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-alarmprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-alarmprofile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.minsait.oum.mdc.dlms.input.alarms"
+		level="debug" additivity="false">
+		<appender-ref ref="input-alarm-profile" />
+	</logger>
+	
+	<appender name="input-instvalues"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-instvalues.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-instvalues.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.minsait.oum.mdc.dlms.input.instantaneousvalues"
+		level="debug" additivity="false">
+		<appender-ref ref="input-instvalues" />
+	</logger>
+	
+
+	<!-- ===========CHECKED====== -->
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+
+
+	<appender name="input-heartbeat"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-heartbeat.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-hearbeat.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="process-heartbeat"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-heartbeat.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-hearbeat.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="process-loadprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-loadprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-loadprofile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-comission"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-comission.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/inpuht-comission.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<appender name="input-OnDemandLoadProfile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandLoadProfile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandLoadProfile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="process-energyprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-energyprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-energyprofile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-OnDemandAbsoluteLoadProfile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandAbsoluteLoadProfile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandAbsoluteLoadProfile.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-OnDemandConnect"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandConnect.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandConnect.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-OnDemandDisconnect"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandDisconnect.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandDisconnect.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="input-OnDemandSwitchStatus"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandSwitchStatus.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandSwitchStatus.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-OnDemandSynchronization"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-OnDemandSynchronization.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-OnDemandSynchronization.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="call-adapter"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/call-adapter.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/call-adapter.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="energy-adapter"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/energy-adapter.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/energy-adapter.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<appender name="profile-application"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/profile-application.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/profile-application.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="process-switchstatus"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-switchstatus.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-switchstatus.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="process-reconnection"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-reconnection.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-reconnection.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="process-sync"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-sync.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-sync.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="process-pending"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/process-pending.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/process-pending.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-billingprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-billingprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-billingprofile.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="input-clearalarms"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/input-clearalarms.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/input-clearalarms.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ondemand-energyprofile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/ondemand-energyprofile.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/ondemand-energyprofile.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ondemand-clearalarms"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/ondemand-clearalarms.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/archived/ondemand-clearalarms.log.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each archived file, size max 10MB -->
+			<maxFileSize>10MB</maxFileSize>
+			<!-- total size of all archive files, if total size > 20GB, it will delete 
+				old archived file -->
+			<totalSizeCap>20GB</totalSizeCap>
+			<!-- 60 days to keep -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandClearAlarms"
+		level="debug" additivity="false">
+		<appender-ref ref="ondemand-clearalarms" />
+	</logger>
+
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandBillingDataProfile"
+		level="debug" additivity="false">
+		<appender-ref ref="ondemand-energyprofile" />
+	</logger>
+
+
+	<logger name="com.minsait.etisalat.dlms.clearalarms"
+		level="debug" additivity="false">
+		<appender-ref ref="input-clearalarms" />
+	</logger>
+
+	<logger name="com.minsait.etisalat.dlms.billingprofile"
+		level="debug" additivity="false">
+		<appender-ref ref="input-billingprofile" />
+	</logger>
+
+
+
+	<logger name="com.minsait.commands.impl.sheduler" level="debug"
+		additivity="false">
+		<appender-ref ref="process-pending" />
+	</logger>
+
+
+	<logger name="com.minsait.etisalat.dlms.synchronization"
+		level="debug" additivity="false">
+		<appender-ref ref="process-sync" />
+	</logger>
+
+
+
+
+	<logger name="com.minsait.etisalat.dlms.reconnection"
+		level="debug" additivity="false">
+		<appender-ref ref="process-reconnection" />
+	</logger>
+
+
+
+	<logger name="com.minsait.etisalat.dlms.switchstatus"
+		level="debug" additivity="false">
+		<appender-ref ref="process-switchstatus" />
+	</logger>
+
+
+
+	<logger
+		name="com.minsait.etisalat.application.ProfileApplication"
+		level="debug" additivity="false">
+		<appender-ref ref="profile-application" />
+	</logger>
+
+
+	<logger
+		name="com.minsait.etisalat.remoteService.kafka.CallAdapter"
+		level="debug" additivity="false">
+		<appender-ref ref="call-adapter" />
+	</logger>
+
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandSynchronization"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandSynchronization" />
+	</logger>
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandSwitchStatus"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandSwitchStatus" />
+	</logger>
+
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandDisconnect"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandDisconnect" />
+	</logger>
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandConnect"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandConnect" />
+	</logger>
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandAbsoluteProfile"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandAbsoluteLoadProfile" />
+	</logger>
+
+
+
+	<logger
+		name="com.minsait.etisalat.request.process.energy.profile"
+		level="debug" additivity="false">
+		<appender-ref ref="process-energyprofile" />
+	</logger>
+	<logger name="com.minsait.etisalat.dlms.comission" level="debug"
+		additivity="false">
+		<appender-ref ref="input-comission" />
+	</logger>
+
+
+	<logger name="com.minsait.etisalat.dlms.heartbeat" level="debug"
+		additivity="false">
+		<appender-ref ref="input-heartbeat" />
+	</logger>
+
+	<logger name="com.minsait.etisalat.request.process.heat.beat"
+		level="debug" additivity="false">
+		<appender-ref ref="process-heartbeat" />
+	</logger>
+
+	<logger name="com.minsait.etisalat.request.process.load.profile"
+		level="debug" additivity="false">
+		<appender-ref ref="process-loadprofile" />
+	</logger>
+
+	<logger
+		name="com.minsait.etisalat.request.process.ondemand.OnDemandLoadProfile"
+		level="debug" additivity="false">
+		<appender-ref ref="input-OnDemandLoadProfile" />
+	</logger>
+
+
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

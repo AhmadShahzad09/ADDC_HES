@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    command: "/bin/bash -c \"rabbitmq-plugins enable rabbitmq_mqtt; rabbitmq-server\"" 
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+      - "1883:1883"
+    volumes:
+      - ./rabbitmq-isolated.conf:/etc/rabbitmq/rabbitmq.config   
+      

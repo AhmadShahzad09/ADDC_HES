@@ -1,0 +1,17 @@
+mdm:
+  etisalat:
+    company:
+      code: ${COMPANY-CODE}
+      host: ${COMPANY-HOST}
+    mqtt:
+      host: ${MQTT-HOST}
+      username: ${MQTT-USERNAME}
+      password: ${MQTT-PASSWORD}
+      inflight: ${MQTT-INFLIGHT}
+    kafka:
+      brokers: ${KAFKA-BROKERS}
+      username: ${KAFKA-USERNAME}
+      password: ${KAFKA-PASSWORD}
+    mongo:
+      uri: ${MONGO-URI}
+      authDatabase: ${MONGO-DATABASE}

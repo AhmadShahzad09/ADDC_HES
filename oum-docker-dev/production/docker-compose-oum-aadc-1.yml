@@ -1,0 +1,18 @@
+version: "3"
+services:
+  oum-web-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_aadc/oum-web:latest'
+    ports:
+      - '8080:8080'
+    container_name: 'oum-web-aadc-1'
+    networks:
+      - oum_main
+    hostname: OUM-AADC-1
+    volumes:
+      - /home/au_addc/oum_deploy/volumes/oum_addc/report:/mdm/report
+    extra_hosts:
+      - "etisalat-pro.onesaitplatform.com:10.170.0.67"
+networks:
+    oum_main:
+        external: true
+

@@ -1,0 +1,25 @@
+mdm:
+    etisalat:
+        protocol:
+            version: "v13"
+        company:
+            code: aadc
+            host: http://10.170.4.130:9080
+        kafka:
+            brokers: 10.170.4.5:9096
+            username: DIGITAL_CLIENT_DATAFLOWS-aadc-development_aadc
+            password: d9adfed4a3db49a2a8e53cbf23328042
+        mongo:
+            uri: mongodb://platformadmin:3t1s4l4t-2022!@10.170.4.194:27017/aadc?authSource=admin
+            authDatabase: admin
+logging:
+    file: /home/mdm/mdm/logs/etisaliad-input/ms-heartbeat.log
+
+job:
+    unreachable: "0 0 * * * ?"
+    active: "0 1 0/2 * * ?"
+
+spring.cloud.stream.kafka.binder.consumerProperties:
+  session.timeout.ms: 120000
+  max.poll.interval.ms: 300000
+  max.poll.records: 1

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: ms-oum-mqtt-input
+    name: ms-oum-mqtt-input-svc
+spec:
+    selector:
+        app: ms-oum-mqtt-input
+    type: ClusterIP

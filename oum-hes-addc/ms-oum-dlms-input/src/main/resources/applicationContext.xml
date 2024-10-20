@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	        http://www.springframework.org/schema/beans/spring-beans.xsd
+	        http://www.springframework.org/schema/context
+	        http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+	      
+	<!--   
+	<cache:annotation-driven />
+
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean 
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" 
+                  name="equipmentPropsBySerialNumber"/>
+                <bean 
+                  class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" 
+                  name="getEquipmentPropsByLogicalDeviceName"/>
+            </set>
+        </property>
+    </bean>
+     -->
+	        
+	<bean id="asynchronouProcessingCommands" class="org.springframework.beans.factory.config.ListFactoryBean">
+	    <property name="sourceList">
+	        <list>
+	            <value>OnDemandEventLog</value>
+	            <value>OnDemandReadLoadProfile1</value>
+	            <value>OnDemandReadLoadProfile2</value>
+	            <value>OnDemandReadBillingProfile</value>
+	            <value>OnDemandReadPowerQualityProfile</value>
+	            <value>OnDemandReadInstrumentationProfile</value>
+	        </list>
+	    </property>
+	</bean>
+
+	<bean scope="prototype" id="OnDemandMeterPing" class="com.indracompany.energy.dlms.cosem.addc.request.commands.MeterPing" />
+	
+	<bean scope="prototype" id="OnDemandReadRealTime" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetDateTime" />
+	<bean scope="prototype" id="OnDemandSynchronization" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetDateTime" />
+	
+	<bean scope="prototype" id="OnDemandReadFirmwareUpgradeStatus" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetFirmwareUpgradeStatus" />
+	<bean scope="prototype" id="OnDemandFirmwareUpgrade" class="com.indracompany.energy.dlms.cosem.addc.request.commands.FirmwareUpgrade" />
+	
+	<bean scope="prototype" id="OnDemandEventLog" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetEventLog" />
+	
+	<bean scope="prototype" id="OnDemandReadLoadProfile1" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadProfile1" />
+	
+	<bean scope="prototype" id="OnDemandReadLoadProfile2" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadProfile2" />
+	
+	<bean scope="prototype" id="OnDemandReadBillingProfile" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetBillingProfile" />
+
+	<bean scope="prototype" id="OnDemandReadLoadProfile1CapturePeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadProfile1CapturePeriod" />
+	
+	<bean scope="prototype" id="OnDemandReadLoadProfile2CapturePeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadProfile2CapturePeriod" />
+	
+	<bean scope="prototype" id="OnDemandReadPowerQualityProfile" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetPowerQualityProfile" />
+	
+	<bean scope="prototype" id="OnDemandReadPowerQualityProfileCapturePeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetPowerQualityProfileCapturePeriod	" />
+	
+	<bean scope="prototype" id="OnDemandReadInstrumentationProfile" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetInstrumentationProfile" />
+	
+	<bean scope="prototype" id="OnDemandReadLoadProfileCapturePeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadProfileCapturePeriod" />
+	<bean scope="prototype" id="OnDemandSetLoadProfileCapturePeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetLoadProfileCapturePeriod" />
+	
+	<bean scope="prototype" id="OnDemandSwitchStatus" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetSwitchStatus" />
+	<bean scope="prototype" id="OnDemandCutOffReconnection" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetSwitchStatus" />
+	
+	<bean scope="prototype" id="OnDemandGetBillingDate" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetBillingDate" />
+	<bean scope="prototype" id="OnDemandSetBillingDate" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetBillingDate" />
+	
+	<bean scope="prototype" id="OnDemandGetPaymentMode" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetPaymentMode" />
+	<bean scope="prototype" id="OnDemandSetPaymentMode" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetPaymentMode" />
+	
+	<bean scope="prototype" id="OnDemandReadPushDestinationAddress" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetPushSetupDestination" />
+	<bean scope="prototype" id="OnDemandSetPushDestinationAddress" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetPushSetupDestination" />
+
+	<bean scope="prototype" id="OnDemandGetMeterStatus" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetMeterStatus" />
+	
+	<bean scope="prototype" id="OnDemandClearAlarms" class="com.indracompany.energy.dlms.cosem.addc.request.commands.ClearAlarms" />
+	
+	<bean scope="prototype" id="OnDemandClearAlarmsDescriptor" class="com.indracompany.energy.dlms.cosem.addc.request.commands.ClearAlarmsDescriptor" />
+	
+	<bean scope="prototype" id="OnDemandSetMaximumDemand" class="com.indracompany.energy.dlms.cosem.addc.request.commands.MDIResetEndBillingPeriod" />
+	
+	<bean scope="prototype" id="OnDemandAbsoluteProfile" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetEnergyRegisters" />
+	<bean scope="prototype" id="OnDemandReadInstantaneousValues" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetInstantaneousRegisters" />
+	<bean scope="prototype" id="OnDemandReadMaximumDemandRegisters" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetMaxDemandRegisters" />
+	
+	<bean scope="prototype" id="OnDemandGetLoadLimitThreshold" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetLoadLimitThershold" />
+	<bean scope="prototype" id="OnDemandSetLoadLimitation" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetLoadLimitation" />
+	
+	<bean scope="prototype" id="OnDemandGetVoltRangeUp" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetVoltRangeUp" />
+	<bean scope="prototype" id="OnDemandSetVoltRangeUp" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetVoltRangeUp" />
+	<bean scope="prototype" id="OnDemandGetVoltRangeLow" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetVoltRangeLow" />
+	<bean scope="prototype" id="OnDemandSetVoltRangeLow" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetVoltRangeLow" />
+	<bean scope="prototype" id="OnDemandGetDemandIntegrationPeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetDemandIntegrationPeriod" />
+	<bean scope="prototype" id="OnDemandSetDemandIntegrationPeriod" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetDemandIntegrationPeriod" />
+	
+	<bean scope="prototype" id="OnDemandReadNamePlateInfoMeter" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetMeterNamePlateInfo" />
+	
+	<bean scope="prototype" id="OnDemandGetTariffAgreement" class="com.indracompany.energy.dlms.cosem.addc.request.commands.GetCurrentActiveTariff" />
+	<bean scope="prototype" id="OnDemandSetTariffAgreement" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetTouTable" />
+
+	<bean scope="prototype" id="OnDemandChangeMeterPassword" class="com.indracompany.energy.dlms.cosem.addc.request.commands.SetMeterPassword" />
+</beans>
+

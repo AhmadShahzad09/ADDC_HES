@@ -1,0 +1,51 @@
+spring.profiles.active: @build.profile.id@
+
+spring.cloud.stream:
+  bindings:
+    task-status-in:
+      consumer:
+        concurrency: 50
+        partitioned: true
+      destination: ${mdm.etisalat.company.code}_task-status
+      contentType: application/json
+      group: task-status-group
+    request:
+      contentType: application/json;charset=UTF-8
+      destination: ${mdm.etisalat.company.code}_request-topic
+      group: request-group
+    etisalat-out:
+      contentType: application/json;charset=UTF-8
+      destination: ${mdm.etisalat.company.code}_etisalat-topic
+#      producer:
+#        partition-count: 1
+#        partition-key-expression: "headers['partitionKey']"
+    dlms-out:
+      contentType: application/json;charset=UTF-8
+      destination: ${mdm.etisalat.company.code}_dlms-topic
+#      producer:
+#        partition-count: 1
+#        partition-key-expression: "headers['partitionKey']"
+  kafka:
+    binder:
+      jaas:
+        loginModule: "org.apache.kafka.common.security.plain.PlainLoginModule"
+        options:
+          username: ${mdm.etisalat.kafka.username}
+          password: ${mdm.etisalat.kafka.password}
+      brokers: ${mdm.etisalat.kafka.brokers}
+      configuration:
+        sasl:
+          mechanism: PLAIN
+        auto.offset.reset: earliest
+        security.protocol: SASL_PLAINTEXT
+        key.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+        value.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      autoAddPartition: true
+
+spring.data.mongodb:
+  uri: ${mdm.etisalat.mongo.uri}
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+execution.timeout: 86400000

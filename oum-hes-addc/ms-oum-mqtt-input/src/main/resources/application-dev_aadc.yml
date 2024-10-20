@@ -1,0 +1,36 @@
+mdm:
+  etisalat:
+    company:
+      code: aadc
+      host: http://10.86.1.47:9081
+    mqtt:
+      host: 10.86.1.47:1883
+      username: mqttuser
+      password: Mqttuser@1
+      inflight: 32
+    kafka:
+      brokers: 10.86.1.47:9095
+      username: KAFKA_CLIENT
+      password: 312137b6a422466fbc83f7b28c910452
+    mongo:
+      uri: mongodb://platformadmin:0pen-platf0rm-2018!@10.86.1.47:27017/aadc?authSource=admin
+      authDatabase: aadc
+
+spring:
+   cloud.stream:
+      bindings:
+         mdm-measure:
+            contentType: application/json;charset=UTF-8
+            destination: measure-topic
+         mdm-reading:
+            contentType: application/json;charset=UTF-8
+            destination: reading-topic
+         mdm-instantaneous-value:
+            contentType: application/json;charset=UTF-8
+            destination: instantaneous-value-topic
+         mdm-meter-event:
+            contentType: application/json;charset=UTF-8
+            destination: meter-event-topic
+         mdm-dcu-parameter:
+            contentType: application/json;charset=UTF-8
+            destination: aadc_dcu-parameter-topic

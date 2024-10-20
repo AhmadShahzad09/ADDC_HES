@@ -1,0 +1,19 @@
+mdm:
+    etisalat:
+        protocol:
+            version: "v13"
+        company:
+            code: addc
+            host: http://10.86.1.47:9080
+        kafka:
+            brokers: 10.86.1.47:9095
+            username: KAFKA_CLIENT
+            password: 312137b6a422466fbc83f7b28c910452
+        mongo:
+            uri: mongodb://platformadmin:0pen-platf0rm-2018!@10.86.1.47:27017/aadc?authSource=admin
+logging:
+    file: /home/mdm/mdm/logs/etisaliad-input/ms-heartbeat.log
+
+job:
+    unreachable: "0 0 * * * ?"
+    active: "0 1 0/2 * * ?"

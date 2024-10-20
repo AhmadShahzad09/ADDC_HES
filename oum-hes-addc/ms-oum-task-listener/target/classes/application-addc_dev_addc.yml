@@ -1,0 +1,10 @@
+mdm:
+  etisalat:
+    company:
+      code: addc
+    kafka:
+      brokers: 10.170.5.2:9096
+      username: DIGITAL_CLIENT_DATAFLOWS-addc-development_addc
+      password: 209f7dfd85184d5e8c9434a3f350ca50
+    mongo:
+      uri: mongodb://platformadmin:3t1s4l4t-D3V-2022!@10.170.5.66:27017/addc?authSource=admin

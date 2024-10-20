@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-oum-heartbeat
+  name: ms-oum-heartbeat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ms-oum-heartbeat
+  template:
+    metadata:
+      labels:
+        app: ms-oum-heartbeat
+    spec:
+      containers:
+      - image: ms-oum-heartbeat:v1
+        imagePullPolicy: Never
+        name: ms-oum-heartbeat

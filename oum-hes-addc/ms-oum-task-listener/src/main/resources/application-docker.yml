@@ -1,0 +1,10 @@
+mdm:
+  etisalat:
+    company:
+      code: ${COMPANY-CODE}
+    kafka:
+      brokers: ${KAFKA-BROKERS}
+      username: ${KAFKA-USERNAME}
+      password: ${KAFKA-PASSWORD}
+    mongo:
+      uri: ${MONGO-URI}

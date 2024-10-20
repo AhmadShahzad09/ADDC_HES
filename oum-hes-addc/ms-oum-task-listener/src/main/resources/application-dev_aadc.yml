@@ -1,0 +1,10 @@
+mdm:
+  etisalat:
+    company:
+      code: aadc
+    kafka:
+      brokers: 10.86.1.47:9095
+      username: KAFKA_CLIENT
+      password: 312137b6a422466fbc83f7b28c910452
+    mongo:
+      uri: mongodb://platformadmin:0pen-platf0rm-2018!@10.86.1.47:27017/aadc?authSource=admin

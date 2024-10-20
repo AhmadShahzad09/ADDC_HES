@@ -1,0 +1,20 @@
+mdm:
+    etisalat:
+        protocol:
+            version: "v13"
+        company:
+            code: aadc
+            host: http://10.170.5.4:9080
+        kafka:
+            brokers: 10.170.5.2:9096
+            username: DIGITAL_CLIENT_DATAFLOWS-aadc-development_aadc
+            password: bca7b40878b64677a4a45ee557227875
+        mongo:
+            uri: mongodb://platformadmin:3t1s4l4t-2022!@10.170.5.66:27017/aadc?authSource=admin
+            authDatabase: aadc
+logging:
+    file: /home/mdm/mdm/logs/etisaliad-input/ms-heartbeat.log
+
+job:
+    unreachable: "0 0 * * * ?"
+    active: "0 1 0/2 * * ?"

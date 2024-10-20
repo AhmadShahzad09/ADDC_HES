@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="oum-domain" />
+        <module name="ms-oum-heartbeat" />
+        <module name="ms-oum-mqtt-input" />
+        <module name="ms-oum-dlms-input" />
+        <module name="oum-commons" />
+        <module name="consumer-service-bus" />
+        <module name="ms-oum-monitor-rest" />
+        <module name="ms-oum-task-listener" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="oum-addc-db" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="consumer-service-bus" options="-parameters" />
+      <module name="ms-oum-dlms-input" options="-parameters" />
+      <module name="ms-oum-heartbeat" options="-parameters" />
+      <module name="ms-oum-monitor-rest" options="-parameters" />
+      <module name="ms-oum-mqtt-input" options="-parameters" />
+      <module name="ms-oum-task-listener" options="-parameters" />
+    </option>
+  </component>
+</project>

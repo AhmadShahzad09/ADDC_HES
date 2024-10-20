@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.14</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.minsait</groupId>
+	<artifactId>consumer-service-bus</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<name>consumer-service-bus</name>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+	</properties>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>INVAMIPAM_Snapshot</id>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>INVAMIPAM_Release</id>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Release</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>INVAMIPAM_Release</id>
+			<name>Indra Maven Release Repository</name>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>INVAMIPAM_Snapshot</id>
+			<name>Indra Maven Snapshot Repository</name>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.log4j</groupId>
+			<artifactId>jsonevent-layout</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<artifactId>common-lib</artifactId>
+			<groupId>com.minsait</groupId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -1,0 +1,46 @@
+version: "3"
+services:
+  oum-ws-api-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_addc/oum-ws-api:latest'
+    ports:
+      - '8080:8080'
+    container_name: 'oum-ws-api-addc'
+    extra_hosts:
+      - "etisalat-pro.onesaitplatform.com:10.170.0.67"
+    networks:
+      - oum_main
+    hostname: OUM-WS-API-ADDC
+  oum-ws-api-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_aadc/oum-ws-api:latest'
+    ports:
+      - '9080:8080'
+    container_name: 'oum-ws-api-aadc'
+    extra_hosts:
+      - "etisalat-pro.onesaitplatform.com:10.170.0.67"
+    networks:
+      - oum_main
+    hostname: OUM-WS-API-AADC
+  oum-mqtt-input-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_addc/oum-mqtt-input:latest'
+    container_name: 'oum-mqtt-input-addc'
+    networks:
+      - oum_main
+    hostname: OUM-MQTT-INPUT-ADDC
+  oum-monitor-rest-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_addc/oum-monitor-rest:latest'
+    ports:
+      - '8011:8011'
+    container_name: 'oum-monitor-rest-addc'
+    networks:
+      - oum_main
+    hostname: OUM-MONITOR-REST-ADDC
+  oum-task-listener-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/production_addc/oum-task-listener:latest'
+    container_name: 'oum-task-listener-addc'
+    networks:
+      - oum_main
+    hostname: OUM-TASK-LISTENER-ADDC
+networks:
+    oum_main:
+        external: true
+

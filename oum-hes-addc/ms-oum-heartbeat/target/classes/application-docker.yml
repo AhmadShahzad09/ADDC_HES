@@ -1,0 +1,20 @@
+mdm:
+  etisalat:
+    protocol:
+      version: ${PROTOCOL-VERSION}
+    company:
+      code: ${COMPANY-CODE}
+      host: ${COMPANY-HOST}
+    kafka:
+      brokers: ${KAFKA-BROKERS}
+      username: ${KAFKA-USERNAME}
+      password: ${KAFKA-PASSWORD}
+    mongo:
+      uri: ${MONGO-URI}
+      authDatabase: ${MONGO-DATABASE}
+logging:
+  file: ${HEARTBEAT-LOGGING-FILE}
+
+job:
+  unreachable: ${HEARTBEAT-JOB-UNREACHABLE-CRON}
+  active: ${HEARTBEAT-JOB-ACTIVE-CRON}

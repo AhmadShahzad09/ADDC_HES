@@ -1,0 +1,6 @@
+mdm:
+  etisalat:
+    server:
+      port: 9011
+    mongo:
+      uri: mongodb://platformadmin:3t1s4l4t-D3V-2022!@10.170.5.66:27017/aadc?authSource=admin

@@ -1,0 +1,6 @@
+mdm:
+   etisalat:
+      server:
+         port: 9011
+      mongo:
+         uri: mongodb://platformadmin:0pen-platf0rm-2018!@10.86.1.47:27017/aadc?authSource=admin

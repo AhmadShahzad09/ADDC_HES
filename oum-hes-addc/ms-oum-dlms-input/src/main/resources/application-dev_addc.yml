@@ -1,0 +1,11 @@
+mdm:
+  etisalat:
+    company:
+      code: addc
+      host: http://10.170.5.4:9080
+    kafka:
+      brokers: 10.86.1.47:9095
+      username: colecta-client
+      password: 881474c293b44b4f99230b2e054875df
+    mongo:
+      uri: mongodb://platformadmin:0pen-platf0rm-2018!@10.86.1.47:27017/onesaitplatform_rtdb?authSource=admin

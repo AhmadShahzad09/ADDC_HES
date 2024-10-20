@@ -1,0 +1,151 @@
+spring.profiles.active: @build.profile.id@
+protocol.version: "v13"
+
+param.find.meter:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/findEquipmentStatus/
+param.gateway.params:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/getGatewayParams/
+finish.commission:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/finnishCommission
+changeip.gateway:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/assignCommunicationEquipmentAddressProperty
+changestatus.gateway:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/updateEquipmentStatus
+find.event.data:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/findEventDataTypeCodeByObisCode
+add.telemetry.remote.configuration:  ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/addTelemetryRemoteConfiguration
+find.equipment.by.serialnumber: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/equipmentBySerialNumber/
+confirm.kms.password: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/confirmKeysDeployment/
+
+user.hb: admin
+pass.hb: admin
+
+mqtt.server:
+  ip: ${mdm.etisalat.mqtt.host}
+  user: ${mdm.etisalat.mqtt.username}
+  password: ${mdm.etisalat.mqtt.password}
+  inflight: ${mdm.etisalat.mqtt.inflight}
+
+mqtt:
+  topics:
+    gateway:
+      heartbeat: gateway/heartbeat
+      meter-discovery: gateway/comission
+      events: gateway/events
+      alarms: gateway/alarms
+      real-time-clock: gateway/clocktime
+      set-time-synchronization: gateway/synchronization
+      read-profile-intervalperiod: gateway/getinterval
+      set-profile-intervalperiod: gateway/setinterval
+      firmware-update: gateway/firmwareupdate
+      change-mqtt-password: gateway/password
+    meter:
+      energy-registers: meter/energyprofile
+      max-demand-registers: meter/maxdemand
+      load-profile1: meter/loadprofile1
+      load-profile2: meter/loadprofile2
+      power-quality-profile: meter/powerqualityprofile
+      instrumentation-profile: meter/instrumentationprofile
+      water-profile: meter/waterprofile
+      billing-profile: meter/billingprofile
+      instantaneous-registers: meter/instregisters
+      events: meter/events
+      read-realtime-clock: meter/clocktime
+      gateway-ping: meter/gatewayping
+      meter-ping: meter/meterping
+      meter-time-synchronization: meter/synchronization
+    on-demand:
+      energy-registers: meter/energyprofile # (Absolute Profile)
+      max-demand-registers: meter/maxdemand
+      load-profile1: meter/loadprofile1
+      load-profile2: meter/loadprofile2
+      power-quality-profile: meter/powerqualityprofile
+      instrumentation-profile: meter/instrumentationprofile
+      instantaneous-values: meter/instregisters
+      billing-profile: meter/billingprofile
+      real-time-clock: meter/clocktime
+      load-profile-capture-period: meter/getprofileinterval
+      set-load-profile-capture-period: meter/setprofileinterval
+      get-switch-status: meter/switchstatus
+      reconnection: meter/reconnection
+      billing-reset: meter/billingreset # Maximum Demand Reset ->  MDI / End of billing period Reset
+      set-load-limitation: meter/loadlimit # Load Curtailment
+      get-load-limit-threshold: meter/limitthreshold
+      set-billing-date: meter/setbillingdate
+      get-billing-date: meter/getbillingdate
+      clear-alarms: meter/clearalarms
+      set-demand-integration-period: meter/setdemandintperiod
+      get-demand-integration-period: meter/getdemandintperiod
+      set-payment-mode: meter/setpaymentmode
+      get-payment-mode: meter/getpaymentmode
+      set-metering-mode: meter/setmeteringmode
+      get-metering-mode: meter/getmeteringmode
+      set-tariff-agreement: meter/toutariff # TOU Table
+      get-current-active-tariff: meter/activetariff
+      firmware-upgrade: meter/firmware
+      get-firmware-upgrade-status: meter/firmwarestatus
+      change-meter-password: meter/password
+      set-volt-range-low: meter/setvoltrangelow # (Threshold for voltage sag)
+      set-volt-range-up: meter/setvoltrangeup # (Threshold for voltage swell)
+      get-volt-range-low: meter/getvoltrangelow # (Threshold for voltage sag)
+      get-volt-range-up: meter/getvoltrangeup # (Threshold for voltage swell)
+      set-current-range-low: meter/setcurrentrangelow
+      set-current-range-up: meter/setcurrentrangeup
+      get-current-range-low: meter/getcurrentrangelow
+      get-current-range-up: meter/getcurrentrangeup
+      get-meter-status: meter/status
+      gateway-name-plate-information: gateway/nameplate
+      gateway-ping: gateway/ping
+      meter-ping: meter/ping
+      meter-name-plate-information: meter/nameplate
+
+spring:
+  cloud.stream:
+    bindings:
+      mdm-measure:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_measure-topic
+      mdm-reading:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_reading-topic
+      mdm-instantaneous-value:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_instantaneous-value-topic
+      mdm-meter-event:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_meter-event-topic
+      billing_profile:
+        content-type: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_billing-profile-topic
+      task-status-out:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_task-status
+      heartbeat-out:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_heartbeat-topic
+      etisalat-in:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_etisalat-topic
+        group: etisalat-group
+    kafka:
+      binder:
+        jaas:
+          loginModule: "org.apache.kafka.common.security.plain.PlainLoginModule"
+          options:
+            username: ${mdm.etisalat.kafka.username}
+            password: ${mdm.etisalat.kafka.password}
+        brokers: ${mdm.etisalat.kafka.brokers}
+        configuration:
+          sasl:
+            mechanism: PLAIN
+          auto.offset.reset: earliest
+          security.protocol: SASL_PLAINTEXT
+          key.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+          value.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+        autoAddPartition: true
+  data.mongodb:
+    uri: ${mdm.etisalat.mongo.uri}
+    authentication-database: ${mdm.etisalat.mongo.authDatabase}
+
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %([%thread]) %(%-5level) %logger.%M - %msg%n"
+  level:
+    root: INFO
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    com.minsait.etisalat.mqtt.handler.MqttMessageHandler: DEBUG
+  file: /home/mdm/mdm/logs/etisaliad-input/mqtt-input.log

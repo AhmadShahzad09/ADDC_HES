@@ -1,0 +1,18 @@
+mdm:
+  etisalat:
+    company:
+      code: addc
+      host: http://10.170.1.2:8080
+    mqtt:
+      host: 10.170.2.130:1883
+      username: etisalat
+      password: etisalat2022
+      inflight: 400
+    kafka:
+      brokers: 10.170.0.66:9096,10.170.0.67:9096,10.170.0.68:9096
+      username: DIGITAL_CLIENT_DATAFLOWS-addc-development_addc
+      password: 1eba723716ed4281a6648f307ca217e7
+    mongo:
+      uri: mongodb://platformadmin:3t1s4l4t-2022!@10.170.1.66:27017,10.170.1.67:27017,10.170.1.68:27017/oum_addc?authSource=admin
+      authDatabase: addc
+    

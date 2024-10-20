@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-oum-dlms-input
+  name: ms-oum-dlms-input
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ms-oum-dlms-input
+  template:
+    metadata:
+      labels:
+        app: ms-oum-dlms-input
+    spec:
+      containers:
+      - image: ms-oum-dlms-input:v1
+        imagePullPolicy: Never
+        name: ms-oum-dlms-input

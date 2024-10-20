@@ -1,0 +1,12 @@
+spring.profiles.active: @build.profile.id@
+execution.timeout: 86400000
+spring.data.mongodb:
+  uri: ${mdm.etisalat.mongo.uri}
+
+server:
+  servlet.context-path: /OnesaitMeterCollector
+  port: ${mdm.etisalat.server.port}
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+logging.level.org.apache.kafka: WARN

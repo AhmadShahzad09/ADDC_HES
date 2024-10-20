@@ -1,0 +1,6 @@
+mdm:
+  etisalat:
+    server:
+      port: ${ETISALAT-SERVER-PORT}
+    mongo:
+      uri: ${MONGO-URI}

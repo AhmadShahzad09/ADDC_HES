@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>oum-hes-addc</name>
+	<groupId>com.minsait.mdc</groupId>
+	<artifactId>oum-hes-addc</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<!-- 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath /> lookup parent from repository
+	</parent>
+	 -->
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>INVAMIPAM_Snapshot</id>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>INVAMIPAM_Release</id>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Release</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>INVAMIPAM_Release</id>
+			<name>Indra Maven Release Repository</name>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>INVAMIPAM_Snapshot</id>
+			<name>Indra Maven Snapshot Repository</name>
+			<url>https://slmaven.indra.es/nexus/repository/INVAMIPAM_Snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+	</dependencies>
+
+	<!-- <build> -->
+	<!-- <plugins> -->
+	<!-- <plugin> -->
+	<!-- <artifactId>maven-compiler-plugin</artifactId> -->
+	<!-- <configuration> -->
+	<!-- <source>${java.version}</source> -->
+	<!-- <target>${java.version}</target> -->
+	<!-- </configuration> -->
+	<!-- </plugin> -->
+	<!-- </plugins> -->
+	<!-- </build> -->
+
+	<packaging>pom</packaging>
+	<description>oum-hes-addc</description>
+	<modules>
+		<module>oum-commons</module>
+		<module>oum-domain</module>
+		<!-- <module>oum-driver-balancer</module> -->
+		<!-- <module>oum-dlms-cosem-gurux</module> -->
+		<module>ms-oum-dlms-input</module>
+		<module>ms-oum-task-listener</module>
+		<module>ms-oum-mqtt-input</module>
+		<module>ms-oum-monitor-rest</module>
+		<module>ms-oum-heartbeat</module>
+	</modules>
+</project>

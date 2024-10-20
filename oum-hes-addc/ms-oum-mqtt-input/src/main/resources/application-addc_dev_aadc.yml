@@ -1,0 +1,37 @@
+mdm:
+  etisalat:
+    company:
+      code: aadc
+      host: http://10.170.5.4:9080
+    mqtt:
+      host: 10.170.5.6:1883
+      username: etisalat
+      password: etisalat2022
+      inflight: 32
+    kafka:
+      brokers: 10.170.5.2:9096
+      username: DIGITAL_CLIENT_DATAFLOWS-aadc-development_aadc
+      password: bca7b40878b64677a4a45ee557227875
+    mongo:
+      uri: mongodb://platformadmin:3t1s4l4t-D3V-2022!@10.170.5.66:27017/aadc?authSource=admin
+      authDatabase: aadc
+
+spring:
+  cloud.stream:
+    bindings:
+      mdm-measure:
+        contentType: application/json;charset=UTF-8
+        destination: measure-topic
+      mdm-reading:
+        contentType: application/json;charset=UTF-8
+        destination: reading-topic
+      mdm-instantaneous-value:
+        contentType: application/json;charset=UTF-8
+        destination: instantaneous-value-topic
+      mdm-meter-event:
+        contentType: application/json;charset=UTF-8
+        destination: meter-event-topic
+      billing_profile:
+        content-type: application/json;charset=UTF-8
+        destination: billing-profile-topic
+    

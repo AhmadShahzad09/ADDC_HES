@@ -1,0 +1,84 @@
+version: "3"
+services:
+  oum-ws-api-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-ws-api:latest'
+    ports:
+      - '8080:8080'
+    container_name: 'oum-ws-api-addc'
+    extra_hosts:
+      - "etisalat-qa.onesaitplatform.com:10.170.4.3"
+    networks:
+      - oum_main
+    hostname: OUM-WS-API-ADDC
+  oum-ws-api-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_aadc/oum-ws-api:latest'
+    ports:
+      - '9080:8080'
+    container_name: 'oum-ws-api-aadc'
+    extra_hosts:
+      - "etisalat-qa.onesaitplatform.com:10.170.4.3"
+    networks:
+      - oum_main
+    hostname: OUM-WS-API-AADC
+  oum-mqtt-input-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-mqtt-input:latest'
+    container_name: 'oum-mqtt-input-addc'
+    networks:
+      - oum_main
+    hostname: OUM-MQTT-INPUT-ADDC
+  oum-mqtt-input-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_aadc/oum-mqtt-input:latest'
+    container_name: 'oum-mqtt-input-aadc'
+    networks:
+      - oum_main
+    hostname: OUM-MQTT-INPUT-AADC
+  oum-dlms-input-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-dlms-input:latest'
+    container_name: 'oum-dlms-input-addc'
+    networks:
+      - oum_main
+    hostname: OUM-DLMS-INPUT-ADDC
+  oum-monitor-rest-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-monitor-rest:latest'
+    ports:
+      - '8011:8011'
+    container_name: 'oum-monitor-rest-addc'
+    networks:
+      - oum_main
+    hostname: OUM-MONITOR-REST-ADDC
+  oum-monitor-rest-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_aadc/oum-monitor-rest:latest'
+    ports:
+      - '9011:8011'
+    container_name: 'oum-monitor-rest-aadc'
+    networks:
+      - oum_main
+    hostname: OUM-MONITOR-REST-AADC
+  oum-task-listener-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-task-listener:latest'
+    container_name: 'oum-task-listener-addc'
+    networks:
+      - oum_main
+    hostname: OUM-TASK-LISTENER-ADDC
+  oum-task-listener-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_aadc/oum-task-listener:latest'
+    container_name: 'oum-task-listener-aadc'
+    networks:
+      - oum_main
+    hostname: OUM-TASK-LISTENER-AADC
+  oum-heartbeat-addc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_addc/oum-heartbeat:latest'
+    container_name: 'oum-heartbeat-addc'
+    networks:
+      - oum_main
+    hostname: OUM-HEARTBEAT-ADDC
+  oum-heartbeat-aadc:
+    image: 'docksdtr.indra.es/addcmn-10.3/oum/qa_aadc/oum-heartbeat:latest'
+    container_name: 'oum-heartbeat-aadc'
+    networks:
+      - oum_main
+    hostname: OUM-HEARTBEAT-AADC
+networks:
+    oum_main:
+        external: true
+

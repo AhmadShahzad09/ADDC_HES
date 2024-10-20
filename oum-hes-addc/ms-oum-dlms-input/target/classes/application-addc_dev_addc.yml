@@ -1,0 +1,26 @@
+mdm:
+  etisalat:
+    company:
+      code: addc
+      host: http://10.170.5.4:8080
+    kafka:
+      brokers: 10.170.5.2:9096
+      username: DIGITAL_CLIENT_DATAFLOWS-addc-development_addc
+      password: 209f7dfd85184d5e8c9434a3f350ca50
+    mongo:
+      uri: mongodb://platformadmin:3t1s4l4t-D3V-2022!@10.170.5.66:27017/addc?authSource=admin
+
+spring.cloud.stream:
+  bindings:
+      mdm-measure:
+        contentType: application/json;charset=UTF-8
+        destination: measure-topic
+      mdm-reading:
+        contentType: application/json;charset=UTF-8
+        destination: reading-topic
+      mdm-instantaneous-value: 
+        contentType: application/json;charset=UTF-8
+        destination: instantaneous-value-topic
+      mdm-meter-event: 
+        contentType: application/json;charset=UTF-8
+        destination: meter-event-topic

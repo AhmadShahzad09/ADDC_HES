@@ -1,0 +1,85 @@
+spring.profiles.active: @build.profile.id@
+
+tcp.server.port:
+  onAlarm: 9099
+  onInstallation: 9089
+  onConnectivity: 9098
+  onPowerDown: 9094
+
+spring.cloud.stream:
+  bindings:
+      dlms-in:
+        consumer:
+          concurrency: 4
+          partitioned: true
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_dlms-topic
+        group: ${mdm.etisalat.company.code}_dlms-group
+      mdm-measure:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_measure-topic
+      mdm-reading:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_reading-topic
+      mdm-instantaneous-value:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_instantaneous-value-topic
+      mdm-meter-event:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_meter-event-topic
+      billing_profile:
+        content-type: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_billing-profile-topic
+      task-status-out:
+        contentType: application/json;charset=UTF-8
+        destination: ${mdm.etisalat.company.code}_task-status
+  kafka:
+      binder:
+        jaas:
+          loginModule: "org.apache.kafka.common.security.plain.PlainLoginModule"
+          options:
+            username: ${mdm.etisalat.kafka.username}
+            password: ${mdm.etisalat.kafka.password}
+        brokers: ${mdm.etisalat.kafka.brokers}
+        configuration:
+          sasl:
+            mechanism: PLAIN
+          auto.offset.reset: earliest
+          security.protocol: SASL_PLAINTEXT
+          key.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+          value.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+        autoAddPartitions: true
+        consumerProperties:
+          session.timeout.ms: 120000
+          max.poll.interval.ms: 600000
+          max.poll.records: 1
+spring.data.mongodb:
+    uri: ${mdm.etisalat.mongo.uri}
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+addTelemetryRemoteConfiguration:
+ url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/addTelemetryRemoteConfiguration
+ username: admin
+ password: admin
+updateEquipmentStatus.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/updateEquipmentStatus
+findEquipmentStatus.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/findEquipmentStatus
+equipmentByLogicalDeviceName.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/equipmentByLogicalDeviceName
+equipmentBySerialNumber.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/equipmentBySerialNumber
+resetMeterAlarms.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/createTelemetryUserRequest
+confirmPassword.url: ${mdm.etisalat.company.host}/oum-ws/services/rest/EquipmentWebService/confirmKeysDeployment
+
+execution.timeout: 86400000
+
+alarms:
+  iskra:
+    MT382:
+      descriptor1: 0,,,,,,,,,,,,,,,,,,,15,16,14,13,12,,,,,,,7,6
+      descriptor2: 42,,,,,,,,,,,,,86,,68,67,66,28,32,62,65,64,63,61,60,59,58,57,56,2,1
+    MT880:
+      descriptor1: 0,,,,,,,135,134,133,132,131,130,129,128,127,,,,15,16,14,13,12,,,,,,,7,6
+      descriptor2: 100,55,54,53,,,,,,,,,123,122,121,63,62,64,52,51,50,58,57,56,24,20,22,117,116,115,,
+    AM550:
+      descriptor1: 0,,,,,,,,,,,,,,,,,,,15,16,14,13,12,,,,,,,7,6
+      descriptor2: 42,,,,,,,,,,,,,86,,68,67,66,28,32,62,65,64,63,61,60,59,58,57,56,2,1

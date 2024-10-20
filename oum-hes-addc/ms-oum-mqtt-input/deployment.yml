@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-oum-mqtt-input
+  name: ms-oum-mqtt-input
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ms-oum-mqtt-input
+  template:
+    metadata:
+      labels:
+        app: ms-oum-mqtt-input
+    spec:
+      containers:
+      - image: ms-oum-mqtt-input:v1
+        imagePullPolicy: Never
+        name: ms-oum-mqtt-input
